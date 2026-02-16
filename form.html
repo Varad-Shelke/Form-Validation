@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modern Form Validation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1f1c2c, #928dab);
+            overflow: hidden;
+        }
+
+        /* Animated background glow */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15), transparent);
+            animation: float 8s infinite ease-in-out alternate;
+        }
+
+        @keyframes float {
+            from { transform: translate(-100px, -100px); }
+            to { transform: translate(100px, 100px); }
+        }
+
+        .form-container {
+            position: relative;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .input-group label {
+            position: absolute;
+            left: 15px;
+            top: 12px;
+            color: #888;
+            transition: 0.3s;
+            pointer-events: none;
+        }
+
+        .input-group input:focus + label,
+        .input-group input:not(:placeholder-shown) + label {
+            top: -10px;
+            left: 10px;
+            font-size: 12px;
+            background: #fff;
+            padding: 0 5px;
+            border-radius: 5px;
+        }
+
+        .error {
+            font-size: 12px;
+            color: #ff4b5c;
+            margin-top: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .success-message {
+            text-align: center;
+            color: #00ffae;
+            margin-top: 15px;
+            display: none;
+        }
+
+        @media (max-width: 480px) {
+            .form-container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="form-container">
+    <h2>User Registration</h2>
+
+    <form id="userForm">
+        <div class="input-group">
+            <input type="text" id="name" placeholder=" " />
+            <label>Full Name</label>
+            <div class="error" id="nameError"></div>
+        </div>
+
+        <div class="input-group">
+            <input type="email" id="email" placeholder=" " />
+            <label>Email Address</label>
+            <div class="error" id="emailError"></div>
+        </div>
+
+        <div class="input-group">
+            <input type="password" id="password" placeholder=" " />
+            <label>Password</label>
+            <div class="error" id="passwordError"></div>
+        </div>
+
+        <div class="input-group">
+            <input type="password" id="confirmPassword" placeholder=" " />
+            <label>Confirm Password</label>
+            <div class="error" id="confirmPasswordError"></div>
+        </div>
+
+        <button type="submit">Submit</button>
+        <div class="success-message" id="successMessage">
+            Form submitted successfully!
+        </div>
+    </form>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
